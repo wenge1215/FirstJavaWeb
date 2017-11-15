@@ -14,6 +14,7 @@
 	</welcome-file-list>
 	<!--如果 报500，看一下class的路径是不是全类名，如果是全类名，
 	在看看pattern 有没有/，如果有，你就clear一下项目，然后在build一下  -->
+	<!-- 登录 -->
 	<servlet>
 		<servlet-name>logserver</servlet-name>
 		<servlet-class>com.first.server.LoginServer</servlet-class>
@@ -21,6 +22,15 @@
 	<servlet-mapping>
 		<servlet-name>logserver</servlet-name>
 		<url-pattern>/login.do</url-pattern>
+	</servlet-mapping>
+	<!-- 注册 -->
+	<servlet>
+	    <servlet-name>registerserver</servlet-name>
+	    <servlet-class>com.first.server.RegisterServer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>registerserver</servlet-name>
+	    <url-pattern>/register.do</url-pattern>
 	</servlet-mapping>
 
 </web-app>
