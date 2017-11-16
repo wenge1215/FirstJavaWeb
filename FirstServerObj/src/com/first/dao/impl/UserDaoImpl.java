@@ -12,9 +12,29 @@ public class UserDaoImpl implements UserDao {
 	Connection connection = DBHelper.getInstance().getConnection();
 
 	@Override
-	public void saveUser(String name, String pwd) {
-		// TODO Auto-generated method stub
+	public boolean saveUser(String name, String pwd) {
+		// insert into tal_user (name,password,nickname) values
+		// (#{name},#{password},#{nickname}
+		String sql = "insert into user(name,pwd) values('" + name + "','" + pwd +"')";
+		try {
+			if (connection.isClosed()) {
+				connection = DBHelper.getInstance().getConnection();
+			}
+			connection.createStatement();
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			int executeUpdate = prepareStatement.executeUpdate();
+			prepareStatement.close();
+			DBHelper.getInstance().closeConnetion();
+			if (executeUpdate > 0) {
+				return true;
+			} else {
+				return false;
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
@@ -37,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int queryUserID(String name) {
-		String sql = "select _id from user where name='"+name+"'";
+		String sql = "select _id from user where name='" + name + "'";
 		int id = -1;
 
 		try {
@@ -54,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 				// String tocken = executeQuery.getString(4);
 				// System.out.println(name1+" "+pwd+" "+tocken);
 			}
-			executeQuery.close();
+			prepareStatement.close();
 			DBHelper.getInstance().closeConnetion();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -87,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 				passwor = executeQuery.getString(1);
 				System.out.println(passwor);
 			}
-			if(passwor.equals(pwd)){
+			if (passwor.equals(pwd)) {
 				return true;
 			}
 

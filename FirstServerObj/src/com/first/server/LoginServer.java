@@ -35,7 +35,7 @@ public class LoginServer extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String name = request.getParameter("name");
-		String pwd = request.getParameter("phone");
+		String pwd = request.getParameter("pwd");
 
 		response.setContentType("text/html;charset=utf-8");
 		if (name == null || name.length() == 0 && pwd == null || pwd.length() < 6) {

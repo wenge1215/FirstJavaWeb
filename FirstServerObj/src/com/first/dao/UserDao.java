@@ -6,8 +6,9 @@ public interface UserDao {
 	 * 保存数据到数据库
 	 * @param name
 	 * @param pwd
+	 * @return 是否插入成功
 	 */
-	void saveUser(String name,String pwd);
+	boolean saveUser(String name,String pwd);
 	
 	/**
 	 * 根据用户名删除当前用户
