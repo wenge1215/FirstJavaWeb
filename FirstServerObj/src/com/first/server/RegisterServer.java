@@ -32,6 +32,7 @@ public class RegisterServer extends HttpServlet {
 		int queryUserID = daoImpl.queryUserID(name);
 		if (queryUserID > 0) {
 			// 用户已存在
+			resp.getWriter().append("用户已存在");
 			return;
 		}
 
